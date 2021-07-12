@@ -1,0 +1,59 @@
+﻿@model FacturacionMVC.Models.Producto
+@{
+    ViewData["Title"] = "Eliminar";
+}
+
+<h1>Desea Eliminar?</h1>
+
+<form asp-action="Eliminar">
+    <table>
+
+        <tr>
+            <td> @Html.DisplayNameFor(m => m.CodigoProducto)</td>
+            <td> @Html.DisplayFor(m => m.CodigoProducto)</td>
+        </tr>
+        <tr>
+        </tr>
+        <tr>
+            <td> @Html.DisplayNameFor(m => m.Nombre)</td>
+            <td> @Html.DisplayFor(m => m.Nombre)</td>
+
+        </tr>
+        <tr>
+            <td> @Html.DisplayNameFor(m => m.Descripcion)</td>
+            <td> @Html.DisplayFor(m => m.Descripcion)</td>
+
+        </tr>
+
+        <tr>
+            <td> @Html.DisplayNameFor(m => m.Precio)</td>
+            <td> @Html.DisplayFor(m => m.Precio)</td>
+
+        </tr>
+
+        <tr>
+            <td> @Html.DisplayNameFor(m => m.Costo)</td>
+            <td> @Html.DisplayFor(m => m.Costo)</td>
+
+
+        </tr>
+        <tr>
+            <td> @Html.DisplayNameFor(m => m.Existencia)</td>
+            <td> @Html.DisplayFor(m => m.Existencia)</td>
+        </tr>
+        <tr>
+            <td> @Html.DisplayNameFor(m => m.Activo)</td>
+            <td> @Html.DisplayFor(m => m.Activo)</td>
+
+        </tr>
+
+        <tr>
+            <td> <a href="@Url.Action("ConfirmacionEliminar","Productos",new { id = Model.CodigoProducto })"> <input type="button" value="Eliminar" class="btn btn-danger" /></a></td>
+
+            <td> @Html.ActionLink("Regresar", "Index", "Productos")</td>
+
+        </tr>
+
+    </table>
+</form>
+

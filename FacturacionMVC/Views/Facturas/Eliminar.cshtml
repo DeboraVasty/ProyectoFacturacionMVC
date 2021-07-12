@@ -1,0 +1,54 @@
+﻿@model FacturacionMVC.Models.Factura
+@{
+    ViewData["Title"] = "Eliminar";
+}
+
+<h1>Desea Eliminar?</h1>
+
+<form asp-action="Eliminar" >
+    
+    <table>
+
+        <tr>
+            <td> @Html.DisplayNameFor(m => m.NumeroFactura)</td>
+            <td> @Html.DisplayFor(m => m.NumeroFactura)</td>
+        </tr>
+        <tr>
+        </tr>
+        <tr>
+            <td> @Html.DisplayNameFor(m => m.Fecha)</td>
+            <td> @Html.DisplayFor(m => m.Fecha)</td>
+
+        </tr>
+        <tr>
+            <td> @Html.DisplayNameFor(m => m.TotalFactura)</td>
+            <td> @Html.DisplayFor(m => m.TotalFactura)</td>
+
+        </tr>
+
+        <tr>
+            <td> @Html.DisplayNameFor(m => m.Anulada)</td>
+            <td> @Html.DisplayFor(m => m.Anulada)</td>
+
+        </tr>
+
+        <tr>
+            <td> @Html.DisplayNameFor(m => m.codigoCliente)</td>
+            <td> @Html.DisplayFor(m => m.codigoCliente)</td>
+
+        </tr>
+
+
+
+        <tr>
+            <td> <a href="@Url.Action("ConfirmacionEliminar","Facturas",new { id = Model.NumeroFactura })"> <input type="button" value="Eliminar" class="btn btn-danger" /></a></td>
+
+            <td> @Html.ActionLink("Regresar", "Index", "Facturas")</td>
+
+        </tr>
+
+
+    </table>
+</form>
+
+

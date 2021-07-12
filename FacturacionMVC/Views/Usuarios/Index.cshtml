@@ -1,0 +1,54 @@
+﻿@model IEnumerable<FacturacionMVC.Models.Usuario>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    
+    <div class="col-sm-6">
+        <h3> Lista de Usuarios</h3>
+        <a class="btn btn-success d-block" asp-action="Crear" asp-controller="Usuarios"> Agregar </a>
+    </div>
+
+    <div class="row">
+        @if (Model.Count() > 0)
+        { 
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <td> @Html.DisplayNameFor(m => m.idUsuario)</td>
+                    <td> @Html.DisplayNameFor(m => m.Nombre)</td>
+                    <td> @Html.DisplayNameFor(m => m.Apellido)</td>
+                    <td> @Html.DisplayNameFor(m => m.NUsuario)</td>
+                    <td> @Html.DisplayNameFor(m => m.Contraseña)</td>
+                    <td> @Html.DisplayNameFor(m => m.Activo)</td>
+                    <td>  </td>
+
+
+                </tr>
+         
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td> @item.idUsuario </td>
+                    <td> @item.Nombre </td>
+                    <td> @item.Apellido </td>
+                    <td> @item.NUsuario </td>
+                    <td> @item.Contraseña </td>
+                    <td> @item.Activo </td>
+                    <td> @Html.ActionLink("Editar","Editar",new {id=item.idUsuario })</td>
+
+                </tr>
+
+
+
+                }
+            </tbody>
+        </table>
+        }
+    </div>
+</div>
+

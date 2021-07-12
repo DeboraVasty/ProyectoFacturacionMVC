@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="container">
+
+    @if (TempData["mensaje"] != null)
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            @TempData["mensaje"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
+    
+   
+  
+        
+            @Html.ActionLink("Reporte facturas", "ReporteFacturas", new { todos = 0, fechaInicio = "", fechaFinal = "" }, new { @class = "btn btn-primary" })
+       
+  
+
+
+</div>
+
+

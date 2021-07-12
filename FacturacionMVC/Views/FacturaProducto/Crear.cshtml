@@ -1,0 +1,104 @@
+﻿@model FacturacionMVC.Models.FacturaProducto
+@{
+    ViewData["Title"] = "Crear";
+}
+
+<div class="container ">
+    <div class="row">
+        <h3> Agregar Productos</h3>
+    </div>
+
+
+    <div class="row center-block">
+        <form method="post" asp-action="Crear">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="NumeroFactura" class="control-labael"></label>
+                <input asp-for="NumeroFactura" class="form-control" value="@TempData["NoFactura"]" readonly="readonly" />
+
+            </div>
+            <div class="form-group">
+                <label asp-for="CodigoProducto" class="control-labael"></label>
+                <select id="listaProductos" onchange="seleccionarProducto();" asp-for="CodigoProducto" class="form-control" asp-items="ViewBag.productos"></select>
+
+            </div>
+
+            <div class="form-group">
+                <label asp-for="cantidad" class="control-label"></label>
+                <input id="cantidad" asp-for="cantidad" onchange="totalPagar();" class="form-control" min="1" step="1" />
+                <br />
+                <label asp-for="NumeroFactura" class="control-label">
+                    Cantidad en existencias:
+                    <select id="listaExistencia" asp-items="ViewBag.existencia" value="-- --" disabled></select>
+                </label>
+                <span asp-validation-for="cantidad" class="text-danger"></span>
+
+
+            </div>
+
+            <div class="form-group">
+                <label asp-for="precioUnitario" class="control-label"></label>
+                <select id="precio" asp-for="precioUnitario" class="form-control" asp-items="ViewBag.precios" readonly="readonly"></select>
+            </div>
+
+            <div class="form-group ">
+                <input type="submit" value="Agregar Producto" class="" btn btn-primary />
+            </div>
+
+        </form>
+        <div class="row">
+            <div class="col-sm-12">
+                <h3 id="TotalPagar" class="TotalPagar" align="center">Total a sumar : Q. -- , --</h3>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+
+<script>
+
+    function seleccionarProducto() {
+        let combo = document.getElementById('listaProductos');
+        let precio = document.getElementById('precio');
+        let existencia = document.getElementById('listaExistencia');
+
+        precio.value = combo.value;
+        existencia.value = combo.value;
+
+        totalPagar();
+    }
+
+    function totalPagar() {
+        let cantidad = document.getElementById('cantidad');
+        let precioUnitario = document.getElementById('precio');
+        let existencia = document.getElementById('listaExistencia');
+
+        if (cantidad.value == '' || cantidad.value <= 0) {
+            cantidad.value = 1;
+            totalPagar();
+            return;
+        }
+
+        if (cantidad.value > Number(existencia.options[existencia.selectedIndex].innerText)) {
+            alert('No hay dispinibilidad\nSe le asignara la cantidad máxima')
+            cantidad.value = Number(existencia.options[existencia.selectedIndex].innerText);
+        }
+
+        console.log(cantidad.value, + "    " + Number(existencia.options[existencia.selectedIndex].innerText));
+
+        const total = precioUnitario.options[precioUnitario.selectedIndex].innerText * cantidad.value;
+
+        document.querySelector('.TotalPagar').innerHTML = `Total a sumar : Q. ${total}`;
+    }
+
+</script>
+
+ 

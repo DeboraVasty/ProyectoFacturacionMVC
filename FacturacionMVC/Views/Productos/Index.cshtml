@@ -1,0 +1,56 @@
+﻿@model IEnumerable<FacturacionMVC.Models.Producto>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="container">
+
+    <div class="col-sm-6">
+        <h3> Lista de Productos</h3>
+        <a class="btn btn-success d-block" asp-action="Crear" asp-controller="Productos"> Agregar </a>
+    </div>
+
+    <div class="row">
+        @if (Model.Count() > 0)
+        {
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <td> @Html.DisplayNameFor(m => m.CodigoProducto)</td>
+                        <td> @Html.DisplayNameFor(m => m.Nombre)</td>
+                        <td> @Html.DisplayNameFor(m => m.Descripcion)</td>
+                        <td> @Html.DisplayNameFor(m => m.Precio)</td>
+                        <td> @Html.DisplayNameFor(m => m.Costo)</td>
+                        <td> @Html.DisplayNameFor(m => m.Existencia)</td>
+                        <td> @Html.DisplayNameFor(m => m.Activo)</td>
+                        <td>  </td>
+
+
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td> @item.CodigoProducto </td>
+                        <td> @item.Nombre </td>
+                        <td> @item.Descripcion </td>
+                        <td> @item.Precio </td>
+                        <td> @item.Costo </td>
+                        <td> @item.Existencia </td>
+                        <td> @item.Activo </td>
+                        <td> @Html.ActionLink("Editar", "Editar", new { id = item.CodigoProducto })|@Html.ActionLink("Eliminar", "Eliminar", new { id = item.CodigoProducto })</td>
+
+                    </tr>
+
+
+
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+
